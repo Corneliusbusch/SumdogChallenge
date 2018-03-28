@@ -25,7 +25,7 @@ Questions:
 3. Should the HTTP error code for "Bad Request" (400) be returned for a specified range outside of 0 and 100000 or would you prefer a more specific error code? 
     - A 400 error is fine
     
-The implementation is done is Python using the Flask framework. To test the functionality of the actual task, 
+The implementation is done using Python3 with the Flask framework. To test the functionality of the actual task, 
 please open localhost and visit the route '/generate_addition'. Add the parameters 'end' and 'start' to the url
 like '/generate_addition?start=11&end=20'. The API's response will then be printed on the screen. 
 
