@@ -1,7 +1,6 @@
-from flask import Flask, request
-import QuestionGenerator as q
-from HelperClasses import InvalidUsage, CustomEncoder
-import json
+from flask import Flask, request, jsonify
+from QuestionGenerator import QuestionGenerator
+from HelperClasses import InvalidUsage
 
 app = Flask(__name__)
 
@@ -10,34 +9,36 @@ app = Flask(__name__)
 def generate_addition():
 
     # Parse arguments from the url
-    start = request.args.get('start')
-    end = request.args.get('end')
+    startParam = request.args.get('start')
+    endParam = request.args.get('end')
 
-    if start is None or end is None:
+    if startParam is None or endParam is None:
         raise InvalidUsage('Bad Request')
 
     # Check for mal-formed requests
-    if start.isdigit() and end.isdigit():
+    if startParam.isdigit() and endParam.isdigit():
 
-        if (0 <= int(start) <= 1000000) \
-                and (0 <= int(end) <= 1000000) \
-                and (int(start) <= int(end)):
-            return json.dumps(generate_question(int(start), int(end)),
-                              cls=CustomEncoder)
+        start = int(startParam)
+        end = int(endParam)
+
+        if (0 <= start <= 1000000) \
+                and (0 <= end <= 1000000) \
+                and (start <= end):
+            return jsonify(generate_question(start, end))
 
     raise InvalidUsage('Bad Request')
 
 
 @app.errorhandler(InvalidUsage)
 def handle_invalid_usage(error):
-    response = json.dumps(error.to_dict())
+    response = jsonify(error.to_dict())
     response.status_code = error.status_code
     return response
 
 
 def generate_question(start, end):
     # Request a question with four possible answers as described in the task
-    question_generator = q.QuestionGenerator(4)
+    question_generator = QuestionGenerator(4)
     return question_generator.generate_addition_question(start, end)
 
 

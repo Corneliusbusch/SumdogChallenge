@@ -1,11 +1,3 @@
-import json
-
-
-# Required to allow serialisability
-class CustomEncoder(json.JSONEncoder):
-
-    def default(self, o):
-        return dict(o)
 
 
 # Implementing Error handling, adapted from:

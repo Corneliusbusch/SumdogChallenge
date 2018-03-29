@@ -1,5 +1,4 @@
 import random as r
-from AdditionQuestion import AdditionQuestion
 
 
 class QuestionGenerator:
@@ -25,13 +24,14 @@ class QuestionGenerator:
 
         others = [solution]
         # Generate the wrong solutions
-        while(len(others) < self.numberOfAnswers):
+        while len(others) < self.numberOfAnswers:
             current = r.randint(start, end)
             if current not in others:
                 others.append(current)
 
-        return AdditionQuestion(firstSummand, secondSummand,
-                                solution, self.shuffle_answers(others))
+        # Return the question in dictionary form
+        return {"firstSummand": firstSummand, "secondSummand": secondSummand,
+                "solution": solution, "answers": self.shuffle_answers(others)}
 
     def shuffle_answers(self, answers):
         r.shuffle(answers)
