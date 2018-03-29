@@ -8,8 +8,8 @@ class CustomEncoder(json.JSONEncoder):
         return dict(o)
 
 
-
-# Implementing Error handling, adapted from: http://flask.pocoo.org/docs/0.12/patterns/apierrors/
+# Implementing Error handling, adapted from:
+# http://flask.pocoo.org/docs/0.12/patterns/apierrors/
 class InvalidUsage(Exception):
     status_code = 400
 

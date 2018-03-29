@@ -1,12 +1,11 @@
 import random as r
-from AdditionQuestion import *
+from AdditionQuestion import AdditionQuestion
 
 
 class QuestionGenerator:
 
     def __init__(self, numberOfAnswers):
         self.numberOfAnswers = numberOfAnswers
-
 
     def generate_addition_question(self, start, end):
 
@@ -17,9 +16,8 @@ class QuestionGenerator:
         firstSummand = r.randint(1, solution)
         secondSummand = solution - firstSummand
 
-
-
-        # Widen the radius of possible solutions if the range is not enough for the specified answers
+        # Widen the radius of possible solutions if the
+        # range is not enough for the specified answers
         if (end - start) < self.numberOfAnswers:
             end += self.numberOfAnswers
             if start > self.numberOfAnswers:
@@ -32,7 +30,8 @@ class QuestionGenerator:
             if current not in others:
                 others.append(current)
 
-        return AdditionQuestion(firstSummand, secondSummand, solution, self.shuffle_answers(others))
+        return AdditionQuestion(firstSummand, secondSummand,
+                                solution, self.shuffle_answers(others))
 
     def shuffle_answers(self, answers):
         r.shuffle(answers)

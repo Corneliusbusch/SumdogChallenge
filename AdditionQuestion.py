@@ -7,10 +7,9 @@ class AdditionQuestion:
         self.correct = correct
         self.others = other
 
-
     # override to return a tuples of the values
     def __iter__(self):
-        return iter([('firstSummand', self.firstSummand), ('secondSummand', self.secondSummand),
-                     ('correct', self.correct), ('other', self.others)])
-
-
+        return iter([('firstSummand', self.firstSummand),
+                     ('secondSummand', self.secondSummand),
+                     ('correct', self.correct),
+                     ('other', self.others)])
