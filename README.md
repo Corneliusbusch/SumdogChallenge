@@ -31,11 +31,21 @@ like '/generate_addition?start=11&end=20'. The API's response will then be print
 
 The response will look similar to the the following: 
 
-{"firstSummand": 4, "secondSummand": 12, "correct": 16, "other": [19, 16, 11, 17]}
+{
+  "answers": [
+    13, 
+    15, 
+    18, 
+    12
+  ], 
+  "firstSummand": 7, 
+  "secondSummand": 5, 
+  "solution": 12
+}
 
 'firstSummand' is the first number of the addition question and 'secondSummand' ist the second number. Therefore,
 the question is "4 + 12". 
-The field 'correct' includes the correct answers and the field 'others' a list of possible solutions.
+The field 'solution' includes the correct answers and the field 'answers' a list of possible, randomly mixed solutions.
 
 It is assumed that the range can be widened, when creating random possible solutions, if it is not possible to 
 generate four distinct solutions. Further, the API has been tested by running the possible input combinations: 
